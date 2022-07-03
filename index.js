@@ -338,7 +338,7 @@ document.getElementById("descargar2").addEventListener("click", function () {
 function descargarGrafo(_id) {
     html2canvas($('#' + _id)[0]).then(function (canvas) {
         return Canvas2Image.saveAsPNG(canvas);
-        $(".response").append(canvas);
+        //$(".response").append(canvas);
     });
 }
 /**
