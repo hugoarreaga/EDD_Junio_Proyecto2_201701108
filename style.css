@@ -180,7 +180,6 @@
     flex-wrap: wrap!important;
     width: 90%;
     align-items: flex-start;
-    place-items: ;
 
 }
 
@@ -193,4 +192,40 @@
 .companyc{
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+
+
+/* ELEMENTOS DE LOS COMENTARISO*/
+
+.comentnode{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/** RENTA DENTRO DE LA VISTA*/
+
+.preciorent{
+    width: 50%;
+    align-items: center;
+}
+
+.pre2{
+    align-items: center;
+    margin-left:auto;
+    margin-right: auto;
+}
+#pppp{
+    align-self: center;
+    margin-left:auto;
+    margin-right: auto;
+    align-items: center;
+}
+#floatingSelect{
+    align-items:stretch;
+}
+
+
+#resimageoculto{
 }

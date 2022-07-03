@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body id="body">
 
     <div id="top" class="w-100"> MOVIE-CATS </div>
 
@@ -50,43 +50,6 @@
 
 
 
-
-    <!--------------------      RESULTADOS      ------------------------>
-
-
-    <div class="form-control res" id="formresactores">
-        <h2>ARBOL DE ACTORES</h2>
-        <div class="form-control container" id="resabb"></div>
-    </div>
-
-    <div class="form-control res" id="formrespeliculas">
-        <h2>ARBOL DE PELICULAS</h2>
-        <div class="form-control container" id="resavl"></div>
-        <button onclick="down()" id="downavl">Descargar</button>
-    </div>
-
-    <script>
-        function down() {
-            domtoimage.toJpeg(document.getElementById('resavl'), { quality: 0.95 })
-                .then(function (dataUrl) {
-                    var link = document.createElement('a');
-                    link.download = 'my-image-name.jpeg';
-                    link.href = dataUrl;
-                    link.click();
-                });
-        }
-    </script>
-
-    <div class="form-control res" id="formrescategorias">
-        <h2>HASH-TABLE CATEGORIAS</h2>
-        <div class="form-control container" id="reshash"></div>
-    </div>
-
-    <div class="form-control res" id="formresmerkle">
-        <h2>ARBOL MERKLE ACCIONES</h2>
-        <p id="log">LOG: </p>
-        <div class="form-control container" id="resmerkle"></div>
-    </div>
 
 
 
@@ -141,14 +104,20 @@
                     <option value="2">Grafo Clientes</option>
                     <option value="3">Grafo Actores</option>
                     <option value="4">Grafo Categorias</option>
+                    <option value="5">Merkle</option>
                 </select>
-                <th></th>
+                <hr>
                 <button id="descargar" type="button" class="btn btn-secondary">Descargar</button>
+                <button id="descargar2" type="button" class="btn btn-secondary">Ocultar/Mostrar</button>
             </div>
             <div class="form-control container align-self-end" id="resimage"></div>
         </div>
+
+
+        
     </div>
 
+    <!----------------- METODO PARA DESCAR IMAGEN ----------->
 
     <!--------------------------        VISTA DE CLIENTES   -------------------->
     <div>
@@ -181,11 +150,71 @@
             <div id="listmovies"></div>
 
         </div>
+
+
+
+
+
+
+
+
+
+
         <!---------------------PELICULA ESPECIFICA------------>
         <div class="cargamasiva m-5  mx-auto form-control " id="divmovieuser">
             <button type="button" class="btn btn-danger" id="return">Regresar</button>
-            <h2 class="font-monospace"> PELICULA :</h2>
+            <hr>
+            <h2 class=" w-75 font-monospace form-control mx-auto" id="titlemovie"> PELICULA :</h2>
+            <div class=" w-75 form-control mx-auto " id="descmovie"></div>
+            <hr>
+            <div class="  w-75 form-control mx-auto ">
+                <h4>ACTUALIZAR LA PUNTUACION DE LA PELICULA</h4>
+                <hr>
+                <h4 id="ptsaux"></h4>
+            </div>
+            <div class=" w-75 form-floating form-control mx-auto ">
+                <div class="input-group flex-nowrap" id="floatingSelect">
+                    <span class="input-group-text" id="addon-wrapping">★</span>
+                    <input type="number" id="puntuacion" class="form-control" aria-label="Username" min="0" max="5"
+                        step="1" value="0">
+                    <button id="changepnts" type="button" class="btn btn-secondary">Cambiar Puntuacion</button>
+                </div>
+
+            </div>
+            <hr>
+            <!------------ ALQUILAR Y PRECIO-->
+            <div class=" w-75 form-floating form-control mx-auto pre2">
+                <div class="mx-auto" id="pppp">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="pricemovie"></span>
+                        <button id="rentmovie" type="button" class="btn btn-secondary">Alquilar Pelicula</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+
+            <!------  COMENTARIOS ----->
+            <h3 class="form-control mx-auto ">Comentarios</h3>
+            <hr><!-- lista de comentarios-->
+            <div class="form-control  mx-auto comentarios" id="listcoments">
+            </div>
+            <!---- nuevo comentario-->
+            <div class="mx-auto input-group flex-nowrap">
+                <span class="input-group-text" id="username"></span>
+                <textarea class="form-control" aria-label="With textarea" id="newcoment"></textarea>
+                <button id="comentar" type="button" class="btn btn-secondary">Comentar</button>
+            </div>
         </div>
+
+
+
+
+
+
+
+
 
         <!-------------------- OPCIONES ACTORES    USER -------------------->
         <div class="cargamasiva m-5  mx-auto form-control " id="divactorsuser">
@@ -210,11 +239,18 @@
 
 
 
-
-
+    <div id="resimageoculto"></div>
 
 
     <!--   SCRIPTS DE LAS OPEREACIONES Y GRAFICAS  -->
+
+    <!------ descargar imagenes-->
+    <script src="https://superal.github.io/canvas2image/canvas2image.js "></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <!----imagenes  d3-->
     <script src="//d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
