@@ -204,6 +204,8 @@ document.getElementById("logout").addEventListener("click", function () {
     currentUser = null
     hideall()
     showLogin()
+    vista =false
+    document.getElementById("resimageoculto").style.display = "none"
 });
 
 /**
